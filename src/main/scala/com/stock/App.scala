@@ -77,15 +77,16 @@ object App {
           val barSize = json.get("barSize").toString
           val duration = json.get("duration").toString
           val durationUnit = json.get("durationUnit").toString
-          val whatToHow = json.get("whatToHow").toString
+          val whatToShow = json.get("whatToShow").toString
           val time = json.get("time").toString
           val count = json.get("count").toString
           val low = json.get("low").toString
           val high = json.get("high").toString
           val open = json.get("open").toString
           val close = json.get("close").toString
+          val volume = json.get("volume").toString
 
-          val put = new Put(Bytes.toBytes(s"${conid}_${symbol}_${time}"))
+          val put = new Put(Bytes.toBytes(s"${conid}_${symbol}_${whatToShow}_${barSize}_${time}"))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("conid"), Bytes.toBytes(conid))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("symbol"), Bytes.toBytes(symbol))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("exchange"), Bytes.toBytes(exchange))
@@ -94,13 +95,14 @@ object App {
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("barSize"), Bytes.toBytes(barSize))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("duration"), Bytes.toBytes(duration))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("durationUnit"), Bytes.toBytes(durationUnit))
-          put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("whatToHow"), Bytes.toBytes(whatToHow))
+          put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("whatToShow"), Bytes.toBytes(whatToShow))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("time"), Bytes.toBytes(time))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("count"), Bytes.toBytes(count))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("low"), Bytes.toBytes(low))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("high"), Bytes.toBytes(high))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("open"), Bytes.toBytes(open))
           put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("close"), Bytes.toBytes(close))
+          put.addColumn(Bytes.toBytes("data"), Bytes.toBytes("volume"), Bytes.toBytes(volume))
           putList += put
         })
 
